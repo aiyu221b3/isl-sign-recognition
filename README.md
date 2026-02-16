@@ -60,10 +60,10 @@ Open notebooks/ISL_MARL_Pipeline.ipynb in Google Colab and run all cells.
 Local
 Bash
 
-python -m src.data_pipeline    # Process images and build dataset
-python -m src.agents           # Train Shape + Motion agents
-python -m src.dqn              # Train DQN coordinator
-python -m src.translator       # Run inference
+python -m src.data_pipeline   
+python -m src.agents           
+python -m src.dqn             
+python -m src.translator       
 Data
 Place ISL gesture images in:
 
