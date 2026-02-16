@@ -5,25 +5,38 @@ Learning. Recognizes two signs ("Sorry" and "Thank You") using a
 multi-agent architecture with adaptive confidence handling.
 
 ## Architecture
-Camera Frame → MediaPipe Landmarks (126-dim) \
-│ \
-┌─────────┴─────────┐ \
-│ │ \
-Shape Agent Motion Agent \
-(MLP) (LSTM) \
-Q: [a, b] Q: [c, d] \
-│ │ \
-└─────────┬─────────┘ \
-│ \
-VDN Mixing \
-Q_joint = Q1 + Q2 \
-│ \
-DQN Coordinator \
-[Sorry, ThankYou, WAIT] \
-│ \
-OUTPUT \
-"I'm sorry" 
+```mermaid
+graph TD
+    %% Styling
+    classDef input fill:#0d0d0c,stroke:#333,stroke-width:2px;
+    classDef agent fill:#0d0d0c,stroke:#01579b,stroke-width:2px;
+    classDef mixing fill:#0d0d0c,stroke:#4a148c,stroke-width:2px;
+    classDef output fill:#0d0d0c,stroke:#1b5e20,stroke-width:2px;
 
+    %% Nodes
+    Input[Camera Frame]:::input --> PreProcess(MediaPipe Landmarks<br/>126-dim Vector):::input
+
+    subgraph Decentralized_Agents [Agent Layer]
+        direction TB
+        PreProcess --> ShapeAgent[Shape Agent<br/>Network: MLP]:::agent
+        PreProcess --> MotionAgent[Motion Agent<br/>Network: LSTM]:::agent
+        
+        ShapeAgent -- "Q1: [a, b]" --> Mixer
+        MotionAgent -- "Q2: [c, d]" --> Mixer
+    end
+
+    Mixer{VDN Mixing<br/>Q_joint = Q1 + Q2}:::mixing
+
+    Mixer --> Coordinator[DQN Coordinator<br/>Global Q-Evaluation]:::mixing
+    
+    Coordinator --> ActionSpace[Action Space:<br/>Sorry, ThankYou, WAIT]:::output
+    
+    ActionSpace -- Argmax --> FinalOut(["Output: I'm Sorry"]):::output
+
+    %% Link Styling
+    linkStyle default stroke:#333,stroke-width:1.5px;
+
+```
 
 ## Components
 
