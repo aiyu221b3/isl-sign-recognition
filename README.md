@@ -22,7 +22,7 @@ DQN Coordinator \
 [Sorry, ThankYou, WAIT] \
 │ \
 OUTPUT \
-"I'm sorry" \
+"I'm sorry" 
 
 
 ## Components
