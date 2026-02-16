@@ -5,9 +5,9 @@ Learning. Recognizes two signs ("Sorry" and "Thank You") using a
 multi-agent architecture with adaptive confidence handling.
 
 ## Architecture
-Camera Frame → MediaPipe Landmarks (126-dim)
-│
-┌─────────┴─────────┐
+Camera Frame → MediaPipe Landmarks (126-dim) \
+│ \
+┌─────────┴─────────┐ \
 │ │
 Shape Agent Motion Agent
 (MLP) (LSTM)
