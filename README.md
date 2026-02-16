@@ -8,23 +8,21 @@ multi-agent architecture with adaptive confidence handling.
 Camera Frame → MediaPipe Landmarks (126-dim) \
 │ \
 ┌─────────┴─────────┐ \
-│ │
-Shape Agent Motion Agent
-(MLP) (LSTM)
-Q: [a, b] Q: [c, d]
-│ │
-└─────────┬─────────┘
-│
-VDN Mixing
-Q_joint = Q1 + Q2
-│
-DQN Coordinator
-[Sorry, ThankYou, WAIT]
-│
-OUTPUT
-"I'm sorry"
-
-text
+│ │ \
+Shape Agent Motion Agent \
+(MLP) (LSTM) \
+Q: [a, b] Q: [c, d] \
+│ │ \
+└─────────┬─────────┘ \
+│ \
+VDN Mixing \
+Q_joint = Q1 + Q2 \
+│ \
+DQN Coordinator \
+[Sorry, ThankYou, WAIT] \
+│ \
+OUTPUT \
+"I'm sorry" \
 
 
 ## Components
